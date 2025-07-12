@@ -13,13 +13,10 @@
 
 ```bash
 git clone https://github.com/your-username/notionary-blog.git
-cd notionary-blog
 
 composer install
 npm install
 
-cp .env.example .env
-php artisan key:generate
 
 npm run dev
 php artisan serve
