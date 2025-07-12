@@ -36,7 +36,7 @@
                         @if ($shown < $showMax || $page == $current)
                             @if ($page == $current)
                                 <li>
-                                    <span class="px-3 py-1 bg-[#066AD8] text-white rounded-md">{{ $page }}</span>
+                                    <span class="px-3 py-1 bg-bluePrimary text-white rounded-md">{{ $page }}</span>
                                 </li>
                             @else
                                 <li>

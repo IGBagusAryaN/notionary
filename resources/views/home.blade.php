@@ -20,11 +20,11 @@
                 </div>
                 <div class="flex flex-col gap-2">
                     <a href="{{ route('posts.index') }}"
-                        class="px-5 py-3 border border-gray-200 rounded-md w-full lg:!w-auto text-center hover:bg-[#066AD8] hover:text-white dark:text-white">
+                        class="px-5 py-3 border border-gray-200 rounded-md w-full lg:!w-auto text-center hover:bg-bluePrimary hover:text-white dark:text-white">
                         View blogs
                     </a>
                     <a href="#posts"
-                        class="px-5 py-3 border border-gray-200 rounded-md w-full lg:!w-auto text-center bg-[#066AD8] text-white hover:bg-blue-900 dark:text-white">
+                        class="px-5 py-3 border border-gray-200 rounded-md w-full lg:!w-auto text-center bg-bluePrimary text-white hover:bg-blue-900 dark:text-white">
                         Your posts
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                     Posts by {{ $user['name'] }}
                 </h2>
                 <a href="{{ route('posts.create') }}"
-                    class="px-5 py-3 border border-gray-200 rounded-md w-full lg:!w-auto mt-5 lg:mt-0 text-center flex justify-center items-center gap-2 cursor-pointer hover:bg-[#066AD8] hover:text-white dark:text-white">
+                    class="px-5 py-3 border border-gray-200 rounded-md w-full lg:!w-auto mt-5 lg:mt-0 text-center flex justify-center items-center gap-2 cursor-pointer hover:bg-bluePrimary hover:text-white dark:text-white">
                     Create Posts
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
@@ -129,12 +129,24 @@
 
                 <!-- Navbar List -->
                 <ul class="flex gap-6 text-sm text-gray-700 dark:text-gray-300">
-                    <li><a href="{{ route('home') }}" class="hover:underline">Home</a></li>
-                    <li><a href="{{ route('posts.index') }}" class="hover:underline">Posts</a></li>
+                    <li>
+                        <a href="{{ route('home') }}"
+                            class="{{ request()->routeIs('home') ? 'text-gray-700 font-semibold' : 'text-gray-400' }} text-sm hover:underline dark:text-white">Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('posts.index') }}"
+                            class="{{ request()->routeIs('posts.index') ? 'text-gray-700 font-semibold' : 'text-gray-400' }} text-sm hover:underline dark:text-white">Posts
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('posts.favorites') }}"
+                            class="{{ request()->routeIs('posts.favorites') ? 'text-gray-700 font-semibold' : 'text-gray-400' }} text-sm hover:underline dark:text-white">Favorites
+                        </a>
+                    </li>
                 </ul>
             </div>
 
-            <!-- Copyright -->
             <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
                 &copy; {{ date('Y') }} Notionary. All rights reserved.
             </div>

@@ -19,6 +19,9 @@ export default {
                 xl: "38px",
                 xl2: "48px",
             },
+            backgroundColor:{
+                bluePrimary: "#066AD8"
+            }
         },
     },
     plugins: [],

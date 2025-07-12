@@ -6,9 +6,9 @@
     <div class="mb-8 flex justify-between items-center">
         <a href="{{ route('posts.index') }}" class="text-blue-500 hover:underline">← Back to Posts</a>
         <button onclick="toggleFavorite({{ $post['id'] }})"
-         class="favorite-btn bg-blue-600 hover:bg-blue-800 text-sm px-2 py-1 rounded">
-         <span id="fav-btn-{{ $post['id'] }}" class="text-white">Add to Favorites</span>
-     </button>
+            class="favorite-btn bg-blue-600 hover:bg-blue-800 text-sm px-2 py-1 rounded">
+            <span id="fav-btn-{{ $post['id'] }}" class="text-white">Add to Favorites</span>
+        </button>
     </div>
 
 
@@ -33,3 +33,54 @@
         </div>
     </div>
 @endsection
+
+<script>
+    const FAV_KEY = 'favoritePosts';
+
+    function toggleFavorite(postId) {
+        let favs = JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+        const btn = document.querySelector(`.favorite-btn`);
+        const textSpan = document.getElementById(`fav-btn-${postId}`);
+
+        if (favs.includes(postId)) {
+            favs = favs.filter(id => id !== postId);
+            textSpan.innerText = 'Add to Favorites';
+            btn.classList.remove('bg-red-600', 'hover:bg-red-800');
+            btn.classList.add('bg-blue-600', 'hover:bg-blue-800');
+        } else {
+            favs.push(postId);
+            textSpan.innerText = 'Remove Favorite';
+            btn.classList.remove('bg-blue-600', 'hover:bg-blue-800');
+            btn.classList.add('bg-red-600', 'hover:bg-red-800');
+        }
+
+        localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+    }
+
+
+    function removeFavorite(postId, btn) {
+        let favs = JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+
+        favs = favs.filter(id => id !== postId);
+        localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+
+        const postEl = btn.closest('div');
+        if (postEl) postEl.remove();
+
+        const container = document.getElementById('favorite-list');
+        if (container && container.children.length === 0) {
+            container.innerHTML = '<p>You have no favorite posts.</p>';
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        let favs = JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+
+        favs.forEach(id => {
+            const btn = document.getElementById(`fav-btn-${id}`);
+            if (btn) {
+                btn.innerText = 'Remove Favorite';
+            }
+        });
+    });
+</script>

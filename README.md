@@ -1,66 +1,108 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📝 Notionary Blog – Laravel x Tailwind Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern blog platform built with Laravel, styled using Tailwind CSS, and powered by JSONPlaceholder API. Features include viewing, creating, editing posts, a favorite system, dark/light theme toggle, and smooth UX enhancements.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ⚙️ Setup Instructions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 📦 Requirements
+- PHP >= 8.1  
+- Composer  
+- Node.js & npm  
+- Laravel 10+  
+- Vite (default with Laravel)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🚀 Installation
 
-## Learning Laravel
+```bash
+git clone https://github.com/your-username/notionary-blog.git
+cd notionary-blog
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+composer install
+npm install
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+cp .env.example .env
+php artisan key:generate
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+npm run dev
+php artisan serve
+```
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ✨ Features Implemented
+- ✅ View all posts from JSONPlaceholder
+- ✅ View post details with comments
+- ✅ Create, edit, and delete posts (simulasi)
+- ✅ Favorite system using `localStorage`
+- ✅ See and manage favorites list
+- ✅ Dark/light mode toggle menggunakan Tailwind
+- ✅ Ganti logo & icon saat toggle dark/light
+- ✅ Font `Poppins` di seluruh halaman
+- ✅ Smooth scroll ke section menggunakan anchor `#posts`
+- ✅ Paginate post list
+- ✅ Sort posts by title
+- ✅ View posts filtered by user ID (URL param)
+- ✅ Tabel data dengan aksi edit/delete
+- ✅ Tombol delete hanya simulasi (popup alert)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 🧪 Technologies Used
+- Laravel 10
+- Tailwind CSS
+- JavaScript (Vanilla)
+- JSONPlaceholder API
+- Vite
+- LottieFiles (landing animation)
+- Laravel Notify
+---
 
-## Contributing
+## 🔌 API Endpoints Used
+Semua endpoint dari: [https://jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Method | Endpoint                  | Keterangan                |
+|--------|---------------------------|---------------------------|
+| GET    | /posts                    | Ambil semua post          |
+| GET    | /posts/{id}               | Ambil 1 post              |
+| GET    | /posts/{id}/comments      | Ambil komentar per post   |
+| GET    | /posts?userId=1           | Ambil post dari user ID   |
+| POST   | /posts                    | Simulasi tambah post      |
+| PUT    | /posts/{id}               | Simulasi update post      |
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Challenges & Solutions
 
-## Security Vulnerabilities
+### Data API tidak persistent
+Karena JSONPlaceholder hanya mock API, semua perubahan seperti POST, PUT, DELETE tidak benar-benar menyimpan data. Maka simulasi dilakukan dan user diberikan feedback dengan laravel notify.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Dark mode toggle
+Menggunakan toggle switch berbasis `checkbox`, `dark:` class Tailwind, serta icon dinamis (sun/moon) + logo berubah saat dark mode.
 
-## License
+### Favorites disimpan lokal
+Gunakan `localStorage` untuk menyimpan ID post yang disukai. Ditampilkan ulang saat user membuka halaman favorite dan tombol berubah sesuai state.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Pagination
+Karena API mengembalikan semua data sekaligus, digunakan `collect()->forPage()` dan `LengthAwarePaginator` agar pagination bisa berjalan manual.
+
+
+
+## 📸 Preview
+
+### 🟠 DarkMode
+
+![Preview Mobile](./public/images/darkmode.png)
+
+### 🟠 Profile
+
+![Preview Tablet](./public/images/profile.png)
+
+### 🟠 Post
+
+![Preview Desktop](./public/images/posts.png)
+
+### 🟠 Favorite
+
+![Preview Desktop](./public/images/favorite.png)

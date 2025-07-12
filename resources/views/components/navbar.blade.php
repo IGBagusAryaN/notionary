@@ -89,6 +89,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('posts.favorites') }}"
+                    class="block py-2 px-3 rounded hover:bg-gray-200 dark:hover:bg-gray-800 {{ request()->routeIs('posts.index') ? 'font-semibold' : '' }}">
+                    Favorites
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('users.show', 1) }}"
                     class="block py-2 px-3 rounded hover:bg-gray-200 dark:hover:bg-gray-800 {{ request()->routeIs('users.show', 1) ? 'font-semibold' : '' }}">
                     Profile

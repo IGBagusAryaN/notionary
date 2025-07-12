@@ -13,7 +13,6 @@
             @method('PUT')
         @endif
 
-        {{-- Title --}}
         <div>
             <label class="block text-sm font-semibold mb-1" for="title">Title</label>
             <input type="text" id="title" name="title" value="{{ old('title', $post['title'] ?? '') }}"
@@ -23,19 +22,16 @@
             @enderror
         </div>
 
-        {{-- Body --}}
         <div>
-            <label class="block text-sm font-semibold mb-1" for="body">Body</label>
+            <label class="block text-sm font-semibold mb-1" for="body">Content</label>
             <textarea id="body" name="body" rows="5"
                 class="w-full p-2 border rounded dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring focus:border-blue-400 @error('body') border-red-500 @enderror">{{ old('body', $post['body'] ?? '') }}</textarea>
             @error('body')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
-
-        {{-- Submit --}}
         <div>
-            <button type="submit" class="!bg-[#066AD8] hover:!bg-blue-800 text-white font-medium px-5 py-2 rounded w-full md:!w-auto">
+            <button type="submit" class="!bg-bluePrimary hover:!bg-blue-800 text-white font-medium px-5 py-2 rounded w-full md:!w-auto">
                 {{ $post ? 'Update Post' : 'Create Post' }}
             </button>
         </div>

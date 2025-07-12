@@ -10,19 +10,18 @@
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Search posts..."
                 class="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600" />
 
-            <button type="submit" class="!bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Search
-                <div id="spinner" class="hidden">
-                    <svg class="animate-spin ml-2 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z">
-                        </path>
-                    </svg>
-                </div>
+            <button type="submit"
+                class="!bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2">
+                <span>Search</span>
+                <svg id="spinner" class="hidden animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10"
+                        stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
             </button>
-
         </form>
     </div>
 
@@ -34,31 +33,34 @@
         <div class="grid md:grid-cols-2 gap-6">
             @foreach ($posts as $post)
                 <div
-                    class="bg-white p-4 rounded shadow hover:shadow-lg transition dark:bg-gray-700 dark:border dark:border-gray-600">
+                    class="bg-white p-4 rounded shadow hover:shadow-lg transition dark:bg-gray-800 dark:border dark:border-gray-700">
                     <h2 class="text-xl font-semibold">{{ $post['title'] }}</h2>
                     <p class="text-gray-600 mt-2 line-clamp-3 dark:text-gray-300">{{ $post['body'] }}</p>
                     <a href="{{ route('posts.show', $post['id']) }}" class="text-blue-500 mt-3 inline-block">Read more →</a>
                 </div>
             @endforeach
-            <div class="mt-8">
-            </div>
-
         </div>
-        <div class="mb-20">
+
+        <div class="mb-20 mt-8">
             {{ $posts->withQueryString()->links() }}
         </div>
-
     @endif
 @endsection
 
+@push('scripts')
 <script>
-    const form = document.querySelector('form');
-    const spinner = document.getElementById('spinner');
-    const button = form.querySelector('button[type="submit"]');
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const spinner = document.getElementById('spinner');
+        const button = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('submit', function() {
-        spinner.classList.remove('hidden');
-        button.disabled = true;
-        button.classList.add('opacity-50', 'cursor-not-allowed');
+        if (form && spinner && button) {
+            form.addEventListener('submit', function () {
+                spinner.classList.remove('hidden');
+                button.disabled = true;
+                button.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+        }
     });
 </script>
+@endpush

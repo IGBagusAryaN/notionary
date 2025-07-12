@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         $page = $request->query('page', 1);
         $search = $request->query('search');
-        $user = $request->query('user'); // Boleh kamu abaikan kalau tidak dipakai
+        $user = $request->query('user');
 
         $posts = $this->postService->getPosts(10, $page, $search, $user);
 
@@ -46,7 +46,7 @@ class PostController extends Controller
             'body' => 'required|string',
         ]);
 
-        $validated['userId'] = 1; // hardcoded user
+        $validated['userId'] = 1;
 
         $response = Http::post('https://jsonplaceholder.typicode.com/posts', $validated);
 
@@ -83,10 +83,11 @@ class PostController extends Controller
         $response = Http::delete("https://jsonplaceholder.typicode.com/posts/{$id}");
 
         if ($response->successful()) {
-            notify()->success('Post berhasil dihapus!', 'Berhasil');
+            notify()->success('Post deleted successfully!', 'Success');
         } else {
-            notify()->error('Gagal menghapus post.', 'Gagal');
+            notify()->error('Failed to delete the post.', 'Error');
         }
+
 
         return redirect()->route('home');
     }
@@ -102,12 +103,6 @@ class PostController extends Controller
             if ($response->successful()) {
                 $posts->push($response->json());
             }
-        }
-
-        if ($posts->isEmpty()) {
-            notify()->warning('You have no favorite posts yet.');
-        } else {
-            notify()->success('Favorite posts loaded!');
         }
 
         return view('posts.favorites', compact('posts'));
