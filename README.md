@@ -12,11 +12,10 @@
 ### 🚀 Installation
 
 ```bash
-git clone https://github.com/your-username/notionary-blog.git
+git clone https://github.com/IGBagusAryaN/notionary.git
 
 composer install
 npm install
-
 
 npm run dev
 php artisan serve
@@ -29,11 +28,9 @@ php artisan serve
 - ✅ View post details with comments
 - ✅ Create, edit, and delete posts (simulasi)
 - ✅ Favorite system using `localStorage`
-- ✅ See and manage favorites list
 - ✅ Dark/light mode toggle menggunakan Tailwind
 - ✅ Ganti logo & icon saat toggle dark/light
 - ✅ Font `Poppins` di seluruh halaman
-- ✅ Smooth scroll ke section menggunakan anchor `#posts`
 - ✅ Paginate post list
 - ✅ Tabel data dengan aksi edit/delete
 - ✅ Tombol delete hanya simulasi (popup alert)
