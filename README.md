@@ -1,8 +1,4 @@
-# 📝 Notionary Blog – Laravel x Tailwind Project
-
-A modern blog platform built with Laravel, styled using Tailwind CSS, and powered by JSONPlaceholder API. Features include viewing, creating, editing posts, a favorite system, dark/light theme toggle, and smooth UX enhancements.
-
----
+# 📝 Notionary – Laravel x Tailwind Project
 
 ## ⚙️ Setup Instructions
 
@@ -42,8 +38,6 @@ php artisan serve
 - ✅ Font `Poppins` di seluruh halaman
 - ✅ Smooth scroll ke section menggunakan anchor `#posts`
 - ✅ Paginate post list
-- ✅ Sort posts by title
-- ✅ View posts filtered by user ID (URL param)
 - ✅ Tabel data dengan aksi edit/delete
 - ✅ Tombol delete hanya simulasi (popup alert)
 
@@ -70,6 +64,8 @@ Semua endpoint dari: [https://jsonplaceholder.typicode.com](https://jsonplacehol
 | GET    | /posts?userId=1           | Ambil post dari user ID   |
 | POST   | /posts                    | Simulasi tambah post      |
 | PUT    | /posts/{id}               | Simulasi update post      |
+| GET    | /favorites                | Menyimpan semua post yang disukai|
+| DELETE | /posts/{id}               | Hapus post                |
 
 ---
 
@@ -82,7 +78,7 @@ Karena JSONPlaceholder hanya mock API, semua perubahan seperti POST, PUT, DELETE
 Menggunakan toggle switch berbasis `checkbox`, `dark:` class Tailwind, serta icon dinamis (sun/moon) + logo berubah saat dark mode.
 
 ### Favorites disimpan lokal
-Gunakan `localStorage` untuk menyimpan ID post yang disukai. Ditampilkan ulang saat user membuka halaman favorite dan tombol berubah sesuai state.
+Menggunakan `localStorage` untuk menyimpan ID post yang disukai. Ditampilkan ulang saat user membuka halaman favorite dan tombol berubah sesuai state.
 
 ### Pagination
 Karena API mengembalikan semua data sekaligus, digunakan `collect()->forPage()` dan `LengthAwarePaginator` agar pagination bisa berjalan manual.
